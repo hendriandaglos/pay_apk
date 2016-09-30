@@ -120,7 +120,7 @@ $query = $db->query("SELECT * FROM aplikasi ORDER BY id DESC ");
 			<th>User Edit</th>
 			<th> Hapus </th>
 			<th> Edit </th>
-
+asdaswdas
 				
 		</thead>
 		
