@@ -138,7 +138,9 @@ $query = $db->query("SELECT * FROM aplikasi ORDER BY id DESC ");
 			<td>". $data['user_buat'] ."</td>
 			<td>". $data['user_edit'] ."</td>
 			
-			<td><button class='btn btn-danger btn-hapus' data-id='".$data['id']."' data-kode='".$data['kode_aplikasi']."' data-nama='".$data['nama_aplikasi']."' data-harga='".$data['harga']."'> <span class='glyphicon glyphicon-trash'> </span> Hapus </button> </td>
+			<td><button class='btn btn-danger btn-hapus' data-id='".$data['id']."' 
+			data-nama='".$data['nama_aplikasi']."'> <span class='glyphicon glyphicon-trash'> 
+			</span> Hapus </button> </td>
 		
 			<td> <button class='btn btn-info btn-edit' data-kode='". $data['kode_aplikasi'] ."' data-nama='". $data['nama_aplikasi'] ."' data-id='". $data['id'] ."'> <span class='glyphicon glyphicon-edit'> </span> Edit </button> </td>
 			</tr>";
@@ -225,18 +227,30 @@ $(document).ready(function(){
 //fungsi hapus data 
 $(document).on('click', '.btn-hapus', function (e) {
 		var nama = $(this).attr("data-nama");
-		var kode = $(this).attr("data-kode");
 		var id = $(this).attr("data-id");
-		var harga = $(this).attr("data-harga");
 		$("#nama_hapus").val(nama);
-		$("#harga_hapus").val(harga);
-		$("#kode_hapus").val(kode);
 		$("#id_hapus").val(id);
 		$("#modal_hapus").modal('show');
 		
 		});
-// end fungsi hapus data
 
+
+$(document).on('click', '#btn_jadi_hapus', function (e) {
+		
+		var id = $("#id_hapus").val();
+		$.post("delete_jabatan.php",{id:id},function(data){
+		if (data != "") {
+		
+		$("#modal_hapus").modal('hide');
+		$(".tr-id-"+id+"").remove();
+		
+		}
+
+		
+		});
+		
+		});
+// end fungsi hapus data
 </script>
 <!--End  Hapus Script -- >
 
